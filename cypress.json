@@ -1,3 +1,10 @@
 {
-    "baseUrl": "http://localhost:3000/foods/api/v1/"
+    "baseUrl": "http://localhost:3000/foods/api/v1/",
+    "env": {
+        "db": {
+            "host": "localhost",
+            "user": "root",
+            "database": "foods"
+        }
+    }
 }

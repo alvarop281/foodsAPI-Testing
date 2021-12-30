@@ -1,3 +1,5 @@
+var allRow;
+
 describe('Testing for category resource', () => {
 
     it('verify request returns JSON', () => {
@@ -37,6 +39,33 @@ describe('Testing for category resource', () => {
     //check the array of categories within the response, it must have icon property
     it('verify icon property', () => {
         cy.request('categories/').its('body.objects.categories.0').should('has.property', 'icon');
+    })
+
+    // this test allows you to connect to the database and bring all records to make comparisons with the api
+    it('query test - take all records from categories', () => {
+        cy.task('queryDb', 'SELECT * FROM categories').then(function(result) {
+            allRow = result;
+        })
+    })
+
+    // compare all records in the category table to the all records in the API
+    it('compare quantity of records from category, between db and api', () => {
+        cy.request('categories/').its('body.objects.categories').should('have.length', allRow['length']);
+    })
+
+    // compare the first record in the category table to the first record in the API
+    it('compare the category id, between db and api', () => {
+        cy.request('categories/').its('body.objects.categories.0.id').should('be.equal', allRow[0]['id']);
+    })
+
+    // compare the first record in the category table to the first record in the API
+    it('compare the category description, between db and api', () => {
+        cy.request('categories/').its('body.objects.categories.0.description').should('be.equal', allRow[0]['description']);
+    })
+
+    // compare the first record in the category table to the first record in the API
+    it('compare the category icon, between db and api', () => {
+        cy.request('categories/').its('body.objects.categories.0.icon').should('be.equal', allRow[0]['icon']);
     })
 
 });
