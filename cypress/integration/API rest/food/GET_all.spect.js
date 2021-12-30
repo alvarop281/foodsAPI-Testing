@@ -1,7 +1,7 @@
 const categoyID = 1;
 var allRow;
 
-describe('Testing for category resource', () => {
+describe('Testing for food resource', () => {
 
     // check content-type in header
     it('verify request returns JSON', () => {
@@ -95,7 +95,7 @@ describe('Testing for category resource', () => {
     })
 
     // compare all records in the foods table to the all records in the API
-    it('compare quantity of records from category, between db and api', () => {
+    it('compare quantity of records from foods, between db and api', () => {
         cy.request('categories/' + categoyID + '/foods/')
             .its('body.objects.foods').should('have.length', allRow['length']);
     })
