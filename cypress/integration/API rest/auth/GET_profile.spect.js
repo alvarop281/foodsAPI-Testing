@@ -1,4 +1,4 @@
-const userBuyer = Cypress.env('env').userBuyer;
+const testUser = Cypress.env('env').testUser;
 
 describe('Tests for the Get (profile) method of the authentication resource', () => {
 
@@ -48,7 +48,7 @@ describe('Tests for the Get (profile) method of the authentication resource', ()
                 url: 'auth/profile/',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': userBuyer.token
+                    'auth-token': testUser.token
                 },
             })
             .then((response) => {

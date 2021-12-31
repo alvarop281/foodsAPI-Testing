@@ -1,5 +1,5 @@
 var faker = require('faker');
-const userBuyer = Cypress.env('env').userBuyer;
+const testUser = Cypress.env('env').testUser;
 const userTest = {
     phone_number: faker.fake("{{phone.phoneNumber}}"),
     full_name: faker.fake("{{name.firstName}} {{name.lastName}}"),
@@ -497,7 +497,7 @@ describe('Tests for the post (signin) method of the authentication resource', ()
             method: 'POST',
             url: 'auth/signin/',
             body: {
-                phone_number: userBuyer.phone_number,
+                phone_number: testUser.phone_number,
                 full_name: faker.fake("{{name.firstName}} {{name.lastName}}"),
                 dni: faker.fake("19{{finance.account}}"),
                 password: faker.fake("{{internet.password}}")
@@ -514,7 +514,7 @@ describe('Tests for the post (signin) method of the authentication resource', ()
             body: {
                 phone_number: faker.fake("{{phone.phoneNumber}}"),
                 full_name: faker.fake("{{name.firstName}} {{name.lastName}}"),
-                dni: userBuyer.dni,
+                dni: testUser.dni,
                 password: faker.fake("{{internet.password}}")
             },
             failOnStatusCode: false

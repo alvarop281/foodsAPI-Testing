@@ -1,5 +1,5 @@
 var faker = require('faker');
-const userBuyer = Cypress.env('env').userBuyer;
+const testUser = Cypress.env('env').testUser;
 
 describe('Tests for the post (login) method of the authentication resource', () => {
 
@@ -70,7 +70,7 @@ describe('Tests for the post (login) method of the authentication resource', () 
             method: 'POST',
             url: 'auth/login/',
             body: {
-                phone_number: userBuyer.phone_number,
+                phone_number: testUser.phone_number,
                 password: "12345"
             },
             failOnStatusCode: false
@@ -91,7 +91,7 @@ describe('Tests for the post (login) method of the authentication resource', () 
             url: 'auth/login/',
             body: {
                 phone_number: 123456789012,
-                password: userBuyer.password
+                password: testUser.password
             },
             failOnStatusCode: false
         }).then((response) => {
@@ -109,8 +109,8 @@ describe('Tests for the post (login) method of the authentication resource', () 
             method: 'POST',
             url: 'auth/login/',
             body: {
-                phone_number: userBuyer.phone_number,
-                password: userBuyer.password
+                phone_number: testUser.phone_number,
+                password: testUser.password
             }
         }).then((response) => {
             expect(response.status).to.eq(200)
