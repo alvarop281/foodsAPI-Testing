@@ -111,8 +111,7 @@ describe('Tests for the post (login) method of the authentication resource', () 
             body: {
                 phone_number: userBuyer.phone_number,
                 password: userBuyer.password
-            },
-            failOnStatusCode: false
+            }
         }).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property('success', true)
