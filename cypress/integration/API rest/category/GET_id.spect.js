@@ -3,46 +3,26 @@ var row;
 
 describe('Testing for category resource', () => {
 
-    // check content-type in header
-    it('verify request returns JSON', () => {
+    it('verificar la respuesta de la consulta al recurso categoria', () => {
         cy.request('categories/' + id)
-            .its('headers').its('content-type').should('include', 'application/json')
+            .then((response) => {
+                expect(response.status).to.eq(200)
+                    //.its('headers').its('content-type').should('include', 'application/json')
+                expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
+                    // check success property inside response, it must be true
+                expect(response.body).to.have.property('success', true)
+                    //check the businessMessage property inside the response, it must be empty
+                expect(response.body.businessMessage).to.have.lengthOf(0)
+                    //check the objects property inside the response, it should have category
+                expect(response.body.objects.category).to.exist
+                    //check category inside response, it should have id property
+                expect(response.body.objects.category).to.have.property('id')
+                    //check category inside response, it should have description property
+                expect(response.body.objects.category).to.have.property('description')
+                    //check category inside response, it should have icon property
+                expect(response.body.objects.category).to.have.property('icon')
+            })
     });
-
-    // check status code
-    it('verify the status', () => {
-        cy.request('categories/' + id).its('status').should('be.equal', 200)
-    })
-
-    // check success property inside response, it must be true
-    it('verify success property', () => {
-        cy.request('categories/' + id).its('body.success').should('be.equal', true)
-    })
-
-    //check the businessMessage property inside the response, it must be empty
-    it('verify businessMessage property', () => {
-        cy.request('categories/' + id).its('body.businessMessage').should('have.length', 0)
-    })
-
-    //check the property of the objects inside the response, it must have the property category
-    it('verify objects property', () => {
-        cy.request('categories/' + id).its('body.objects').should('has.property', 'category')
-    })
-
-    //check category inside response, it should have id property
-    it('verify id property', () => {
-        cy.request('categories/' + id).its('body.objects.category').should('has.property', 'id');
-    })
-
-    //check the category inside the response, it should have the description property
-    it('verify description property', () => {
-        cy.request('categories/' + id).its('body.objects.category').should('has.property', 'description');
-    })
-
-    //check the category inside the response, it must have icon property
-    it('verify icon property', () => {
-        cy.request('categories/' + id).its('body.objects.category').should('has.property', 'icon');
-    })
 
     // this test allows you to connect to the database and bring the record to make comparisons with the api
     it('query test - take the record with id = 1 the category table', () => {
