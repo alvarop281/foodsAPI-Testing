@@ -3,7 +3,7 @@ var row;
 
 describe('Testing for category resource', () => {
 
-    it('verificar la respuesta de la consulta al recurso categoria', () => {
+    it('check the response of the query to the category resource', () => {
         cy.request('categories/' + id)
             .then((response) => {
                 expect(response.status).to.eq(200)

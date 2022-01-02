@@ -12,123 +12,48 @@ describe('Testing for food resource', () => {
         })
     })
 
-    // check content-type in header
-    it('verify request returns JSON', () => {
+    it('check the response of the query to the food resource', () => {
         cy.request('foods/' + foodID)
-            .its('headers').its('content-type').should('include', 'application/json')
+            .then((response) => {
+                expect(response.status).to.eq(200)
+                    //.its('headers').its('content-type').should('include', 'application/json')
+                expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
+                    // check success property inside response, it must be true
+                expect(response.body).to.have.property('success', true)
+                    //check the businessMessage property inside the response, it must be empty
+                expect(response.body.businessMessage).to.have.lengthOf(0)
+                    //check the property of the objects inside the response, it must have the property food
+                expect(response.body.objects.food).to.exist
+                    //check food inside response, it should have id property
+                expect(response.body.objects.food).to.have.property('id')
+                    //check food inside response, it must have title property
+                expect(response.body.objects.food).to.have.property('title')
+                    //check food inside response, it must have description property
+                expect(response.body.objects.food).to.have.property('description')
+                    //check food inside response, it must have price property
+                expect(response.body.objects.food).to.have.property('price')
+                    //check food inside response, it must have ingredients property
+                expect(response.body.objects.food).to.have.property('ingredients')
+                    //check food inside response, it must have img_1 property
+                expect(response.body.objects.food).to.have.property('img_1')
+                    //check food inside response, it must have img_2 property
+                expect(response.body.objects.food).to.have.property('img_2')
+                    //check food inside response, it must have category_id property
+                expect(response.body.objects.food).to.have.property('category_id')
+            })
     });
 
-    // check status code
-    it('verify the status', () => {
-        cy.request('foods/' + foodID)
-            .its('status').should('be.equal', 200)
-    })
-
-    // check success property inside response, it must be true
-    it('verify success property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.success').should('be.equal', true)
-    })
-
-    //check the businessMessage property inside the response, it must be empty
-    it('verify businessMessage property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.businessMessage').should('have.length', 0)
-    })
-
-    //check the property of the objects inside the response, it must have the property food
-    it('verify objects property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects').should('has.property', 'food')
-    })
-
-    //check food inside response, it should have id property
-    it('verify id property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'id');
-    })
-
-    //check food inside response, it must have title property
-    it('verify title property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'title');
-    })
-
-    //check food inside response, it must have description property
-    it('verify description property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'description');
-    })
-
-    //check food inside response, it must have price property
-    it('verify price property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'price');
-    })
-
-    //check food inside response, it must have ingredients property
-    it('verify ingredients property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'ingredients');
-    })
-
-    //check food inside response, it must have img_1 property
-    it('verify img_1 property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'img_1');
-    })
-
-    //check food inside response, it must have img_2 property
-    it('verify img_2 property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'img_2');
-    })
-
-    //check food inside response, it must have category_id property
-    it('verify category_id property', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food').should('has.property', 'category_id');
-    })
-
     // compare the record in the food table to record in the API
-    it('compare the food id, between db and api', () => {
+    it('compare food, between db and api', () => {
         cy.request('foods/' + foodID)
-            .its('body.objects.food.id').should('be.equal', row['id']);
-    })
-
-    // compare the record in the food table to record in the API
-    it('compare the food title, between db and api', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food.title').should('be.equal', row['title']);
-    })
-
-    // compare the record in the food table to record in the API
-    it('compare the food description, between db and api', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food.description').should('be.equal', row['description']);
-    })
-
-    // compare the record in the food table to record in the API
-    it('compare the food img_1, between db and api', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food.img_1').should('be.equal', row['img_1']);
-    })
-
-    // compare the record in the food table to record in the API
-    it('compare the food img_2, between db and api', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food.img_2').should('be.equal', row['img_2']);
-    })
-
-    // compare the record in the food table to record in the API
-    it('compare the food ingredients, between db and api', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food.ingredients').should('be.equal', row['ingredients']);
-    })
-
-    // compare the record in the food table to record in the API
-    it('compare the food price, between db and api', () => {
-        cy.request('foods/' + foodID)
-            .its('body.objects.food.price').should('be.equal', row['price']);
+            .then((response) => {
+                expect(response.body.objects.food.id).to.eq(row['id'])
+                expect(response.body.objects.food.title).to.eq(row['title'])
+                expect(response.body.objects.food.description).to.eq(row['description'])
+                expect(response.body.objects.food.img_1).to.eq(row['img_1'])
+                expect(response.body.objects.food.img_2).to.eq(row['img_2'])
+                expect(response.body.objects.food.ingredients).to.eq(row['ingredients'])
+                expect(response.body.objects.food.price).to.eq(row['price'])
+            })
     })
 })
