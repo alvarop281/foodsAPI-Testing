@@ -7,9 +7,9 @@ const newDataCategory = {
     icon: faker.fake("{{image.avatar}}")
 }
 
-describe('Test method put for category resource', () => {
+describe('Test create a category', () => {
 
-    it('create a category with the correct properties', () => {
+    it('POST - create a category with the correct properties', () => {
         cy.request({
                 method: 'POST',
                 url: 'categories/',
@@ -41,6 +41,10 @@ describe('Test method put for category resource', () => {
                 newCategory = response.body.objects.category;
             })
     })
+
+})
+
+describe('Test method put for category resource', () => {
 
     // Verify if request has id property
     it('PUT - body has id property', () => {

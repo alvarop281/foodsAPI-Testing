@@ -3,9 +3,9 @@ const testUser = Cypress.env('env').testUser;
 const testNonAdminUser = Cypress.env('env').testNonAdminUser;
 var newCategory;
 
-describe('Test method put for category resource', () => {
+describe('Test create a category', () => {
 
-    it('create a category with the correct properties', () => {
+    it('POST - create a category with the correct properties', () => {
         cy.request({
                 method: 'POST',
                 url: 'categories/',
@@ -37,6 +37,10 @@ describe('Test method put for category resource', () => {
                 newCategory = response.body.objects.category;
             })
     })
+
+})
+
+describe('Test method put for category resource', () => {
 
     // Verify if request has a wrong token
     it('DELETE - header has a wrong token', () => {
