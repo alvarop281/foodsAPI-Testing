@@ -192,9 +192,9 @@ describe('Test method post for category resource', () => {
                     // success property must be false
                 expect(response.body).to.have.property('success', false)
                     // businessError.param property must to exist
-                expect(response.body.businessError.param).to.exist
+                expect(response.body.businessError[0].param).to.exist
                     // businessError.param property must to be "token"
-                expect(response.body.businessError.param).to.eq("token")
+                expect(response.body.businessError[0].param).to.eq("token")
                     // objects property length must be 0
                 expect(response.body.objects).to.have.length(0)
             })
@@ -222,9 +222,9 @@ describe('Test method post for category resource', () => {
                     // success property must be false
                 expect(response.body).to.have.property('success', false)
                     // businessError.param property must to exist
-                expect(response.body.businessError.param).to.exist
+                expect(response.body.businessError[0].param).to.exist
                     // businessError.param property must to be "token"
-                expect(response.body.businessError.param).to.eq("User")
+                expect(response.body.businessError[0].param).to.eq("User")
                     // objects property length must be 0
                 expect(response.body.objects).to.have.length(0)
             })

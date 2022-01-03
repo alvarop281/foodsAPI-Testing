@@ -262,7 +262,7 @@ describe('Tests for the post (signin) method of the authentication resource', ()
                 password: faker.fake("{{internet.password}}")
             },
             failOnStatusCode: false
-        }).its('body.businessError.param').should('be.equal', "phone_number or dni")
+        }).its('body.businessError.0.param').should('be.equal', "phone_number or dni")
     })
 
     // check when trying to add a dni already used by another user
@@ -277,7 +277,7 @@ describe('Tests for the post (signin) method of the authentication resource', ()
                 password: faker.fake("{{internet.password}}")
             },
             failOnStatusCode: false
-        }).its('body.businessError.param').should('be.equal', "phone_number or dni")
+        }).its('body.businessError.0.param').should('be.equal', "phone_number or dni")
     })
 
     // check when all correct properties are sent
