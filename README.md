@@ -34,9 +34,10 @@ Steps to follow to run the application
         }
     }
 
-    5.1.- For this, you must run the integration test, API rest / auth / POST_signin.spect.ts and open the console to take the data of the created user. Repeat this step 2 times, then it is necessary to update in MySQL in the foods database, user table, the type_of_user property and assign the value "admin" for one of the 2 users created. the administrator user is the testUser user and the non-administrator user will be the testNonAdminUser
+5.1.- For this, you must run the integration test, API rest / auth / POST_signin.spect.ts and open the console to take the data of the created user. Repeat this step 2 times, then it is necessary to update in MySQL in the foods database, user table, the type_of_user property and assign the value "admin" for one of the 2 users created. the administrator user is the testUser user and the non-administrator user will be the testNonAdminUser
 
 6.- the following data must be configured in the cypress.json file:
+
     {
         "baseUrl": "http://localhost:3000/foods/api/v1/",
         "env": {
