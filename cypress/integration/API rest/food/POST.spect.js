@@ -497,7 +497,7 @@ describe('Test cases where request does not have the correct properties in the h
 describe('Test cases where the request has the correct properties in the body and header', () => {
 
     // check when all correct properties are sent
-    it('create a category with the correct properties', () => {
+    it('create a food with the correct properties', () => {
         cy.request({
                 method: 'POST',
                 url: 'categories/' + id + '/foods/',
@@ -519,15 +519,15 @@ describe('Test cases where the request has the correct properties in the body an
                 expect(response.body).to.have.property('success', true)
                     // check when all correct properties are sent, businessMessage property must have a message
                 expect(response.body.businessMessage.message).to.exist
-                    // check when all correct properties are sent, objects property must have a category
+                    // check when all correct properties are sent, objects property must have a food
                 expect(response.body.objects.newFood).to.exist
-                    // check when all correct properties are sent, category property must have a title
+                    // check when all correct properties are sent, food property must have a title
                 expect(response.body.objects.newFood.title).to.exist
-                    // check when all correct properties are sent, category property must have a price
+                    // check when all correct properties are sent, food property must have a price
                 expect(response.body.objects.newFood.price).to.exist
-                    // check when all correct properties are sent, category property must have a description
+                    // check when all correct properties are sent, food property must have a description
                 expect(response.body.objects.newFood.description).to.exist
-                    // check when all correct properties are sent, category property must have a ingredients
+                    // check when all correct properties are sent, food property must have a ingredients
                 expect(response.body.objects.newFood.ingredients).to.exist
                     // all parameters must match
                 expect(response.body.objects.newFood).to.have.property('title', newFood.title)
