@@ -55,9 +55,6 @@ describe('Test create a food', () => {
                 expect(response.body.objects.food).to.have.property('price', Number(newFood.price))
                 expect(response.body.objects.food).to.have.property('description', newFood.description)
                 expect(response.body.objects.food).to.have.property('ingredients', newFood.ingredients)
-
-                foodID = response.body.objects.food.id;
-                console.log(foodID)
             })
     })
 });
