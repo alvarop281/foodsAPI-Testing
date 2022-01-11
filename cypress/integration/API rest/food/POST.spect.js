@@ -542,4 +542,38 @@ describe('Test cases where the request has the correct properties in the body an
                 expect(response.body.objects.food).to.have.property('ingredients', newFood.ingredients)
             })
     })
+
+    it('test case when creating a food, and include images.', function() {
+
+        //Declarations
+        const fileName = 'img/img1.png';
+        const fileName2 = 'img/img2.png';
+        const method = 'POST';
+        const url = 'http://localhost:3000/foods/api/v1/categories/' + id + '/foods/';
+        const fileType = 'image/png';
+
+        // Get file from fixtures as binary
+        const imgBin = cy.fixture(fileName, 'binary');
+        const imgBin2 = cy.fixture(fileName2, 'binary');
+
+        // File in binary format gets converted to blob so it can be sent as Form data
+        const img_1 = Cypress.Blob.binaryStringToBlob(imgBin, fileType);
+        const img_2 = Cypress.Blob.binaryStringToBlob(imgBin2, fileType);
+
+        // Build up the form
+        const formData = new FormData();
+        formData.set('img_1', img_1, fileName); //adding a file to the form
+        formData.set('img_2', img_2, fileName2); //adding a file to the form
+        formData.set('title', faker.fake("{{lorem.word}}"));
+        formData.set('price', faker.fake("{{datatype.float}}"));
+        formData.set('description', faker.fake("{{lorem.sentence}}"));
+        formData.set('ingredients', faker.fake("{{lorem.words}}"));
+
+        // Perform the request
+        cy.form_request(method, url, formData, function(response) {
+            expect(response.status).to.eq(201);
+        });
+
+    })
+
 });
