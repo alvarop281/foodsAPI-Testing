@@ -18,6 +18,7 @@ Steps to follow to run the application
     {
         "env": {
             "testUser": {
+                "id": 5,
                 "full_name": "Pierre Swaniawski",
                 "password": "FKj0GptpkNa5P2H",
                 "dni": "1986136341",
@@ -25,6 +26,7 @@ Steps to follow to run the application
                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmdWxsX25hbWUiOiJQaWVycmUgU3dhbmlhd3NraSIsImRuaSI6IjE5ODYxMzYzNDEiLCJwaG9uZV9udW1iZXIiOiIxLTg4NC05NjItMjU1NyB4MzYyNCJ9LCJpYXQiOjE2NDA5NzczNzgsImV4cCI6MTY0MzY1NTc3OH0.FgbDnkgdOqVlX6T8Dz6gUc0uNm6XIyel8ZXlDI7xSnM"
             },
             "testNonAdminUser": {
+                "id": 96,
                 "full_name": "Brett Bergstrom",
                 "password": "GbaMU_zSjwFZkTu",
                 "dni": "1976067989",

@@ -1,7 +1,6 @@
 var faker = require('faker');
 const testUser = Cypress.env('env').testUser;
 const testNonAdminUser = Cypress.env('env').testNonAdminUser;
-const id = 5;
 
 describe('Test method put for user resource', () => {
 
@@ -9,7 +8,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has id property', () => {
         cy.request({
                 method: 'PUT',
-                url: '/users/' + id,
+                url: '/users/' + testUser.id,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': testUser.token
@@ -41,7 +40,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has not phone_number property', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -70,7 +69,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has not full_name property', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -99,7 +98,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has not dni property', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -128,7 +127,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has not 2 properties - businessError.length = 2', () => {
         cy.request({
                 method: 'PUT',
-                url: '/users/' + id,
+                url: '/users/' + testUser.id,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': testUser.token
@@ -155,7 +154,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has not 3 properties - businessError.length = 3', () => {
         cy.request({
                 method: 'PUT',
-                url: '/users/' + id,
+                url: '/users/' + testUser.id,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': testUser.token
@@ -179,7 +178,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has id property and has not properties - businessError.length = 4', () => {
         cy.request({
                 method: 'PUT',
-                url: '/users/' + id,
+                url: '/users/' + testUser.id,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': testUser.token
@@ -206,7 +205,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has the property phone_number, with 11 character', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -236,7 +235,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has the property full_name, with 0 character', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -266,7 +265,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has the property dni, with 8 character', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -296,7 +295,7 @@ describe('Test method put for user resource', () => {
     it('PUT - body has the password property, with 5 character', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -326,7 +325,7 @@ describe('Test method put for user resource', () => {
     it('PUT - header has a wrong token', () => {
         cy.request({
                 method: 'PUT',
-                url: '/users/' + id,
+                url: '/users/' + testUser.id,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': 'Incorrect'
@@ -357,7 +356,7 @@ describe('Test method put for user resource', () => {
     it('PUT - header has a token of a non-administrator user', () => {
         cy.request({
                 method: 'PUT',
-                url: '/users/' + id,
+                url: '/users/' + testUser.id,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': testNonAdminUser.token
@@ -419,7 +418,7 @@ describe('Test method put for user resource', () => {
     it('PUT - update a user with the correct properties', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -456,7 +455,7 @@ describe('Test method put for user resource', () => {
     it('PUT - update a user with the correct properties - all parameters must match', () => {
         cy.request({
             method: 'PUT',
-            url: '/users/' + id,
+            url: '/users/' + testUser.id,
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token': testUser.token
@@ -491,7 +490,7 @@ describe('Test method put for user resource', () => {
             expect(response.body.objects.user).to.have.property('phone_number', testUser.phone_number)
             expect(response.body.objects.user).to.have.property('full_name', testUser.full_name)
             expect(response.body.objects.user).to.have.property('dni', testUser.dni)
-            expect(response.body.objects.user).to.have.property('id', id)
+            expect(response.body.objects.user).to.have.property('id', testUser.id)
         })
     })
 
