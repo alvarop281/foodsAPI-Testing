@@ -626,8 +626,7 @@ describe('Test cases where the request has the correct properties in the body an
         // Perform the request
         cy.form_request(method, url, testUser.token, formData, function(response) {
             const res = JSON.parse(response.response);
-            console.log(res.objects.food)
-                // check when all correct properties are sent, status code must be 201
+            // check when all correct properties are sent, status code must be 201
             expect(response.status).to.eq(200);
             // check when all correct properties are sent, success property must be true
             expect(res).to.have.property('success', true)
