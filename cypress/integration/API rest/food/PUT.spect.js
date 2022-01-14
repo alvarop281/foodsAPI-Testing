@@ -69,7 +69,7 @@ describe('Test create a food', () => {
     })
 })
 
-describe('Test method put for category resource', () => {
+describe('Test method put for foot resource', () => {
 
     // Verify if request has id property
     it('PUT - body has id property', () => {
@@ -598,7 +598,7 @@ describe('Test method put for category resource', () => {
 
 describe('Test cases where the request has the correct properties in the body and header', () => {
 
-    it('PUT - update a category with the correct properties', () => {
+    it('PUT - update a food with the correct properties', () => {
         //Declarations
         const fileName = 'img/r1.png';
         const fileName2 = 'img/r2.png';
