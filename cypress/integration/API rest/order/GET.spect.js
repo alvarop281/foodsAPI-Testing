@@ -159,7 +159,7 @@ describe('Testing for order resource', () => {
                     // check success property inside response, it must be true
                 expect(response.body).to.have.property('success', true)
                     //check the businessMessage property inside the response, it must be empty
-                    //expect(response.body.businessMessage).to.have.lengthOf(0)
+                expect(response.body.businessMessage).to.have.lengthOf(0)
                     //check the objects property inside the response, it should have the array of order
                 expect(response.body.objects.orders).to.exist
                     //check the array of order within the response, it must have id property
