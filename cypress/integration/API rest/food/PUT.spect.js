@@ -643,14 +643,15 @@ describe('Test cases where the request has the correct properties in the body an
                 // check when all correct properties are sent, food property must have a ingredients
             expect(res.objects.food.ingredients).to.exist
                 // check when all correct properties are sent, food property must have a id
-                //expect(res.objects.food.id).to.exist
+            expect(res.objects.food.id).to.exist
                 // check when all correct properties are sent, food property must have a img_1
             expect(res.objects.food.img_1).to.exist
                 // check when all correct properties are sent, food property must have a img_2
             expect(res.objects.food.img_2).to.exist
                 // all parameters must match
+            expect(res.objects.food).to.have.property('id', foodID)
             expect(res.objects.food).to.have.property('title', updateFood.title)
-            expect(res.objects.food).to.have.property('price', updateFood.price)
+            expect(res.objects.food).to.have.property('price', Number(updateFood.price))
             expect(res.objects.food).to.have.property('description', updateFood.description)
             expect(res.objects.food).to.have.property('ingredients', updateFood.ingredients)
             expect(res.objects.food).to.have.property('img_1', "r1.png")
