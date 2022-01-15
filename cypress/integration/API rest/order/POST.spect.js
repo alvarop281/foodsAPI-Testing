@@ -1,4 +1,3 @@
-var faker = require('faker');
 const testNonAdminUser = Cypress.env('env').testNonAdminUser;
 const testUser = Cypress.env('env').testUser;
 
